@@ -24,3 +24,521 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes rainbow-text {
+  0% { color: #ff0000; }
+  14% { color: #ff7f00; }
+  28% { color: #ffff00; }
+  42% { color: #00ff00; }
+  57% { color: #0000ff; }
+  71% { color: #4b0082; }
+  85% { color: #8f00ff; }
+  100% { color: #ff0000; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wavyText {
+  0% {
+    transform: translateY(0px);
+  }
+  20% {
+    transform: translateY(-20px);
+  }
+  40%,
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes colorChange {
+  0%, 100% {
+    color: #FF69B4; /* Hot Pink */
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+  }
+  20% {
+    color: #FFD700; /* Gold */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  }
+  40% {
+    color: #00CED1; /* Turquoise */
+    text-shadow: 0 0 10px rgba(0, 206, 209, 0.5);
+  }
+  60% {
+    color: #FF6B6B; /* Coral */
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+  }
+  80% {
+    color: #98FB98; /* Pale Green */
+    text-shadow: 0 0 10px rgba(152, 251, 152, 0.5);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-rainbow-text {
+  animation: rainbow-text 8s linear infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 1s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 2s ease-out forwards;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+/* Candle Styles */
+.candle-container {
+  position: relative;
+  width: 100px;
+  height: 150px;
+  transform-origin: center bottom;
+}
+
+.candle {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(180deg, #ff9999 0%, #ffcccc 100%);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 153, 153, 0.4);
+}
+
+.flame {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 60px;
+  background: rgba(255, 80, 0, 0.4);
+  border-radius: 50% 50% 20% 20%;
+  box-shadow: 0 0 20px rgba(255, 80, 0, 0.8);
+  animation: flicker 1s ease-in-out infinite;
+}
+
+.wick {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 15px;
+  background: #333;
+  border-radius: 2px;
+}
+
+@keyframes flicker {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.1) skewX(2deg);
+    opacity: 0.8;
+  }
+}
+
+/* Flame parts */
+.flame .top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 30%;
+  background: #ff6b00;
+  border-radius: 50% 50% 20% 20%;
+  animation: flame-top 1s ease-in-out infinite;
+}
+
+.flame .middle {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  right: 20%;
+  bottom: 20%;
+  background: #ff9933;
+  border-radius: 50%;
+  animation: flame-middle 1s ease-in-out infinite alternate;
+}
+
+.flame .bottom {
+  position: absolute;
+  top: 60%;
+  left: 40%;
+  right: 40%;
+  bottom: 0;
+  background: #ffcc00;
+  border-radius: 50%;
+  animation: flame-bottom 1s ease-in-out infinite;
+}
+
+@keyframes flame-top {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.1);
+  }
+}
+
+@keyframes flame-middle {
+  0% {
+    transform: scale(1) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(2deg);
+  }
+}
+
+@keyframes flame-bottom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+}
+
+.wavy-text {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.wavy-text span {
+  display: inline-block;
+  animation: wavyText 1s ease infinite, colorChange 5s linear infinite;
+  animation-delay: calc(.1s * var(--i)), calc(.3s * var(--i));
+  background: linear-gradient(45deg, currentColor, currentColor);
+  -webkit-background-clip: text;
+  filter: brightness(1.2);
+  transition: filter 0.3s ease;
+}
+
+.wavy-text span:hover {
+  filter: brightness(1.5);
+  scale: 1.2;
+}
+
+/* Balloon Animation */
+@keyframes floatBalloon {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(var(--rotation));
+    opacity: 0;
+  }
+}
+
+.balloon-container {
+  position: fixed;
+  bottom: -100px;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.balloon {
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  animation: floatBalloon var(--float-duration) linear infinite;
+  animation-delay: var(--delay);
+  will-change: transform;
+}
+
+.balloon::before {
+  content: '🎈';
+  font-size: var(--size);
+  filter: hue-rotate(var(--hue)) brightness(var(--brightness));
+}
+
+/* Balloon sizes */
+.balloon-sm::before { --size: 1.5rem; }
+.balloon-md::before { --size: 2.5rem; }
+.balloon-lg::before { --size: 3.5rem; }
+
+/* Generate multiple balloon classes */
+.balloon-1 { --float-duration: 12s; --delay: 0s; --rotation: -30deg; left: 10%; }
+.balloon-2 { --float-duration: 15s; --delay: 2s; --rotation: 25deg; left: 20%; }
+.balloon-3 { --float-duration: 11s; --delay: 4s; --rotation: -45deg; left: 30%; }
+.balloon-4 { --float-duration: 14s; --delay: 6s; --rotation: 35deg; left: 40%; }
+.balloon-5 { --float-duration: 13s; --delay: 8s; --rotation: -25deg; left: 50%; }
+.balloon-6 { --float-duration: 16s; --delay: 10s; --rotation: 40deg; left: 60%; }
+.balloon-7 { --float-duration: 12s; --delay: 12s; --rotation: -35deg; left: 70%; }
+.balloon-8 { --float-duration: 15s; --delay: 14s; --rotation: 30deg; left: 80%; }
+.balloon-9 { --float-duration: 14s; --delay: 16s; --rotation: -40deg; left: 90%; }
+
+/* Balloon colors */
+.balloon-red { --hue: 0deg; --brightness: 1.2; }
+.balloon-blue { --hue: 240deg; --brightness: 1.2; }
+.balloon-green { --hue: 120deg; --brightness: 1.2; }
+.balloon-yellow { --hue: 60deg; --brightness: 1.2; }
+.balloon-purple { --hue: 280deg; --brightness: 1.2; }
+.balloon-pink { --hue: 330deg; --brightness: 1.2; }
+
+/* Video Container Styles */
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  transition: transform 0.3s ease;
+}
+
+.video-container:hover {
+  transform: perspective(1000px) rotateX(5deg);
+}
+
+.video-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.celebration-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.rocket {
+  transition: transform 1s ease-in-out;
+}
+
+.rotate-0 {
+  transform: rotate(0deg);
+}
+
+.rotate-45 {
+  transform: rotate(45deg);
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+.rotate-135 {
+  transform: rotate(135deg);
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.rotate-225 {
+  transform: rotate(225deg);
+}
+
+.rotate-270 {
+  transform: rotate(270deg);
+}
+
+.rotate-315 {
+  transform: rotate(315deg);
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Single Rocket Animation */
+@keyframes rocketLaunch {
+  0% {
+    transform: translate(-50%, 0) scale(0.1) rotate(-20deg);
+    opacity: 0;
+  }
+  10% {
+    transform: translate(-50%, 100vh) scale(0.7) rotate(-20deg);
+    opacity: 1;
+  }
+  20% {
+    transform: translate(-50%, 0) scale(1) rotate(-20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -100vh) scale(2) rotate(-50deg); /* Applying rotation dynamically */
+    opacity: 1;
+  }
+}
+
+/* Additional styles to rotate rockets in random directions */
+.rocket-container {
+  position: fixed;
+  left: 40%;
+  top: 60%;
+  z-index: 10;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.rocket {
+  position: absolute;
+  font-size: 3rem;
+  transform-origin: center;
+  animation: rocketLaunch 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform;
+  --rocket-rotate: 0deg; /* Default rotation */
+}
+
+/* Modify this to dynamically set the rotate angle */
+.rocket.rotate-0 {
+  --rocket-rotate: 0deg;
+}
+
+.rocket.rotate-45 {
+  --rocket-rotate: 45deg;
+}
+
+.rocket.rotate-90 {
+  --rocket-rotate: 90deg;
+}
+
+.rocket.rotate-135 {
+  --rocket-rotate: 135deg;
+}
+
+.rocket.rotate-180 {
+  --rocket-rotate: 180deg;
+}
+
+.rocket.rotate-225 {
+  --rocket-rotate: 225deg;
+}
+
+.rocket.rotate-270 {
+  --rocket-rotate: 270deg;
+}
+
+.rocket.rotate-315 {
+  --rocket-rotate: 315deg;
+}
+
+/* .rocket-container {
+  position: fixed;
+  left: 40%;
+  top: 60%;
+  z-index: 10;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.rocket {
+  position: absolute;
+  font-size: 3rem;
+  transform-origin: center;
+  animation: rocketLaunch 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform;
+} */
+
+.rocket::before {
+  content: '🚀';
+  position: absolute;
+  transform: rotate(var(--rotate-angle));
+}
+
+.rocket::after {
+  content: '✨';
+  position: absolute;
+  font-size: 1.5rem;
+  top: 50%;
+  left: -10px;
+  animation: sparkTrail 0.2s ease-out infinite;
+  transform-origin: center;
+}
+
+@keyframes sparkTrail {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
